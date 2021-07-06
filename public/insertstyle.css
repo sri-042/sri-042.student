@@ -1,0 +1,73 @@
+body{
+    background-color: rgb(191, 216, 231);
+    ruby-position: center;
+}
+/*.form-group{
+    width : 300px;
+    margin-left: 500px;
+    padding-top: 5px;
+    border-style: hidden;
+    border-color: black;
+    align-self: right;
+    text-emphasis-style: dot;
+    font-size: 20px;
+}*/
+.App{
+   
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+.Intro{
+    padding-left: 350px;
+    margin-left: 500px;
+    font-size: 35px;
+    float: center;
+    align-content: center;
+    margin: 10px;
+}
+
+.txt{
+    width : 300px;
+}
+fieldset{
+    margin-left: 350px;
+    font-size: 20px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    width: 20px;
+  border: 2px solid;
+  text-decoration: black;
+  padding: 0%;
+  border-radius: inherit;
+  padding: 10px;
+  border-color: black;
+}
+.table{
+   
+    font-size: 20px;
+    float: center;
+    padding-left: 300px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.Submit{
+    width: 170%;
+    padding-left: 550px;
+}
+.inserttable{    
+    margin-left: 500px;
+    font-size: 20px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    width: 20px;
+  border: 2px solid;
+  text-decoration: black;
+  padding: 0%;
+  border-radius: inherit;
+  padding: 10px;
+  border-color: black;
+}
+a{
+    color: rgb(139, 9, 9); padding-left: 600px;font-size: 30px;
+}

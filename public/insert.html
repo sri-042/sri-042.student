@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Insert-REACT</title>
+    <script src="react/react.development.js"></script>
+    <script src="react/react-dom.development.js"></script>
+    <script src="react/prop-types.js"></script>
+	<script src="react/axios.min.js"></script>
+    <script src="react/babel.min.js"></script>
+  </head>
+  <link rel="stylesheet" href="insertstyle.css">
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+
+class App extends React.Component{
+  
+  constructor(props) {
+	super(props);
+	this.state = {
+	usn:'',
+  	studentname: '',
+	email:'',
+	phoneno:'',
+	sem:'',
+	studentdata:[]
+	}
+  };
+  
+handleSubmit(e){
+    e.preventDefault();
+	const mydata1=
+	{
+	  usn: this.state.usn,
+	  studentname:this.state.studentname,
+	  email: this.state.email,
+	  phoneno: this.state.phoneno,
+	  sem: this.state.sem
+	};
+    axios({
+      method: "POST", 
+      url:"http://localhost:8888/api/savedata", 
+      data:  mydata1,
+	 
+    }).then((response)=>{
+		console.log("Data has been sent to server");
+      if (response.data.status === 'success'){
+	     console.log("Data has been submitted");
+		alert("Student Inserted.  "+response.data.mydata.usn+":"+response.data.mydata.studentname+response.data.mydata.email+":"+response.data.mydata.phoneno+":"+response.data.mydata.sem+":")
+		console.log(response.data.mydata.usn+":"+response.data.mydata.studentname+response.data.mydata.email+":"+response.data.mydata.phoneno+":"+response.data.mydata.sem+":");
+		//const myresponsedata = JSON.stringify(response.data.mydata)
+		this.setState({studentdata:myresponsedata})
+        this.resetForm()
+      }else if(response.data.status === 'fail'){
+        alert("Duplicate Student ID")
+		this.resetForm()
+      }
+	  
+    })
+	.catch((e) => {
+	console.log("Internal Server error"+e);
+	});;
+	
+  };
+
+  resetForm(){
+     this.setState({usn: '',  studentname: '',email: '',phoneno: '',sem: ''})
+  };
+
+    
+  render() {
+     console.log("State:",this.state)
+	return(
+
+  	<div className="App">
+
+		<h1 className = "Intro"><b> Enter the Student Details </b></h1> 
+		<fieldset>
+			<legend>Insert</legend>
+  	<form id="contact-form" onSubmit={this.handleSubmit.bind(this)} method="POST">
+  	<div className="form-group">
+      	<label htmlFor="usn"> USN :</label>
+      	<input type="text" className="form-control" id="usn" name="usn" value={this.state.usn} onChange={this.onstudentChange.bind(this)} />
+  	</div>
+  	<br/>
+  	<div className="form-group">
+      	<label htmlFor="studentname">Student Name :</label>
+      	<input type="text" className="form-control"  id="studentname" name="studentname" value={this.state.studentname} onChange={this.onstudentChange.bind(this)} />
+  	</div>
+		<br/>
+	<div className="form-group">
+    	<label htmlFor="email">Student Email ID :</label>
+      	<input type="text" className="form-control"  id="email" name="email" value={this.state.email} onChange={this.onstudentChange.bind(this)} />
+  	</div>
+	  <br/>
+	  <div className="form-group">
+    	<label htmlFor="phoneno">Student Phone No. :</label>
+      	<input type="text" className="form-control"  id="phoneno" name="phoneno" value={this.state.phoneno} onChange={this.onstudentChange.bind(this)} />
+  	</div>
+	  <br/>
+	  <div className="form-group">
+    	<label htmlFor="phoneno">Current Semester :</label>
+      	<input type="text" className="form-control"  id="sem" name="sem" value={this.state.sem} onChange={this.onstudentChange.bind(this)} />
+  	</div>
+	  <br/>
+  	<div className="Submit" >
+	<button type="submit" className="btn btn-primary">Submit</button>
+	</div>
+  	</form>
+	  </fieldset>
+	
+	<h3>{this.state.studentdata}</h3>
+	<a href="index.html" >Home </a>
+  	</div>
+	);
+	
+  }
+// Getting access to entered values
+onstudentChange(event) 
+   {
+       this.setState({ [event.target.name]: event.target.value });  
+   }
+  
+}
+ReactDOM.render(<App />, document.getElementById('root'));
+    </script>
+  
+
+    
+  </body>
+</html>

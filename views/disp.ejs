@@ -1,0 +1,29 @@
+<div class="Intro">
+  <h1 style="padding-left: 200px;">List of students</h1>
+</div>
+<link rel="stylesheet" href="insertstyle.css">
+<% if(students!=null) { %>
+  <div class="table"><table style="border : solid 1px;border-collapse: collapse; border: black;
+    border: solid;
+    border-right: solid black;">
+  <tr>
+      <th style="width:20%; border:solid 1.5px; font-size: 20px; ">Name</th>
+      <th style="width:20%; border:solid 1.5px; font-size: 20px;">USN </th>
+      <th style="width:20%; border:solid 1.5px;font-size: 20px;">Email ID</th>
+      <th style="width:20%; border:solid 1.5px;font-size: 20px;">Phone No. </th>
+      <th style="width:20%; border:solid 1.5px;font-size: 20px;border-right: solid 1.5px">Sem</th>
+      </tr>
+      <% students.forEach(function(item){ %>
+        <tr>
+            <td style="width:20%; text-align:center;border:solid .5px;border-collapse: collapse;"><%= item.studentname%></td>
+            <td style="width:20%; text-align:center;border:solid .5px;border-collapse: collapse;"><%= item.usn %></td>
+            <td style="width:20%; text-align:center;border:solid .5px;border-collapse: collapse;"><%= item.email%></td>
+            <td style="width:20%; text-align:center;border:solid .5px;border-collapse: collapse;"><%= item.phoneno %></td>
+            <td style="width:20%; text-align:center;border:solid .5px;border-collapse: collapse;"><%= item.sem%></td>
+          
+  </tr>
+</div>
+  <% }) %>
+  </table>
+  <br><a href="/index.html" style="color: rgb(139, 9, 9); padding-left: 400px;font-size: 30px;"><b><em>Home</em></b></a>
+  <% } %>
